@@ -1,5 +1,7 @@
 MANIFEST.in
 README.md
+setup.cfg
+setup.py
 flaskr/__init__.py
 flaskr/__init___BACKUP_11181.py
 flaskr/__init___BASE_11181.py
