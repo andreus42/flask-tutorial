@@ -1,6 +1,17 @@
 import os
-
 from flask import Flask
+
+# ORM TESTING OUTSIDE OF APP
+# from datetime import date
+# from post import Post
+# from base import Session, engine, Base
+#
+# session = Session()
+# posts = session.query(Post).all()
+# print ('\nAll posts titles:')
+# for post in posts:
+#         print(f'{post.title}: {post.body}.')
+# session.close()
 
 
 def create_app(test_config=None):
@@ -24,10 +35,22 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # hello world page
+        # hello world page
     @app.route('/hello')
     def hello():
-        return 'Hello, World!'
+        session = Session()
+        posts = session.query(Post).all()
+        print ('\nAll posts titles:')
+        for post in posts:
+                print(f'{post.title}: {post.body}.')
+
+        return f'Hello, World! {posts}.'
+        session.close()
+
+
+
+    from base import Session, engine, Base
+    from post import Post
 
     from . import auth
     app.register_blueprint(auth.bp)
